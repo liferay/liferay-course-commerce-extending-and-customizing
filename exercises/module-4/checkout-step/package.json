@@ -1,0 +1,9 @@
+{
+	"description": "REPLACE HERE",
+	"name": "@liferay/REPLACE HERE",
+	"type": "module",
+	"version": "0.0.0",
+	"workspaces": [
+		"src/main/resources/assets/clarity-b2b-po-step"
+	]
+}
