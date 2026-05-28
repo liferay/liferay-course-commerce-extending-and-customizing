@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @author Brian I. Kim
+ * @author Ricky Pan
  */
 @RequestMapping("/active")
 @RestController
@@ -37,5 +37,5 @@ public class ActiveRestController extends BaseRestController {
 
 	private static final Log _log = LogFactory.getLog(
 		ActiveRestController.class);
-
+		
 }
