@@ -7,20 +7,17 @@ import com.liferay.expando.kernel.model.ExpandoTableConstants;
 import com.liferay.expando.kernel.service.ExpandoValueLocalService;
 import com.liferay.notification.term.evaluator.NotificationTermEvaluator;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
 
 @Component(
 		property = "class.name=com.liferay.account.model.AccountEntry",
@@ -114,10 +111,10 @@ public class PrescriptionExpirationNotificationTermEvaluator
 			// getData() must receive a String[] default to match the column type.
 
 			String[] statusArray =
-				(String[])_expandoValueLocalService.getData(
-					companyId, AccountEntry.class.getName(),
-					ExpandoTableConstants.DEFAULT_TABLE_NAME,
-					"prescriptionStatus", accountEntryId, new String[0]);
+                    _expandoValueLocalService.getData(
+                        companyId, AccountEntry.class.getName(),
+                        ExpandoTableConstants.DEFAULT_TABLE_NAME,
+                        "prescriptionStatus", accountEntryId, new String[0]);
 
 			return (statusArray != null && statusArray.length > 0)
 				? statusArray[0]
@@ -149,9 +146,6 @@ public class PrescriptionExpirationNotificationTermEvaluator
 
 		return "";
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-			PrescriptionExpirationNotificationTermEvaluator.class);
 
 	@Reference
 	private AccountEntryUserRelLocalService _accountEntryUserRelLocalService;
