@@ -3,7 +3,7 @@
     "workspaces": {
         "packages": [
             "client-extensions/clarity-theme",
-            "client-extensions/checkout-step",
+            "client-extensions/checkout-step"
         ]
     }
 }
