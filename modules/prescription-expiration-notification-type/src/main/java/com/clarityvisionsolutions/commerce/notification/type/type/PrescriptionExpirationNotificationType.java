@@ -51,7 +51,7 @@ import org.osgi.service.component.annotations.Reference;
  *       if ("companyId".equals(setting.getName())) {
  *           long companyId = GetterUtil.getLong(setting.getValue());
  *
- *           Role role = _roleLocalService.fetchRole(companyId, "Role Name");
+ *           Role role = _roleLocalService.fetchRole(companyId, "[Role Name]");
  *
  *           if (role != null) {
  *               List<User> users = userLocalService.getRoleUsers(
@@ -69,12 +69,10 @@ import org.osgi.service.component.annotations.Reference;
  *   return new Object[0];
  */
 
-@Component(
-	property = "notification.type.key=" + PrescriptionExpirationNotificationType.TYPE_KEY,
-	service = {NotificationType.class, PrescriptionExpirationNotificationType.class}
-)
+@Component(property = "notification.type.key=" + PrescriptionExpirationNotificationType.TYPE_KEY, service = {
+		NotificationType.class, PrescriptionExpirationNotificationType.class })
 public class PrescriptionExpirationNotificationType
-	extends BaseNotificationType {
+		extends BaseNotificationType {
 
 	public static final String TYPE_KEY = "prescription-expiration";
 
@@ -95,10 +93,10 @@ public class PrescriptionExpirationNotificationType
 	public Map<String, String> evaluateNotificationRecipientSettings(
 			long companyId, NotificationContext notificationContext,
 			Map<String, Object> termValues)
-		throws PortalException {
+			throws PortalException {
 
 		return Collections.singletonMap(
-			"companyId", String.valueOf(companyId));
+				"companyId", String.valueOf(companyId));
 	}
 
 	@Override
@@ -108,11 +106,12 @@ public class PrescriptionExpirationNotificationType
 
 	@Override
 	public Object[] toRecipients(
-		List<NotificationRecipientSetting> notificationRecipientSettings) {
+			List<NotificationRecipientSetting> notificationRecipientSettings) {
 
 		// TODO 2: Resolve the recipient's userId from the account ID.
-		// Use _accountEntryUserRelLocalService to get the account's users,
-		// then return the first user's userId as a single-element Object array,
+		// Use _roleLocalService to get the role by name,
+		// then return the first user assigned to the role as a single-element Object
+		// array,
 		// or new Object[0] if the account has no users.
 
 		return new Object[0];
@@ -120,25 +119,23 @@ public class PrescriptionExpirationNotificationType
 
 	@Override
 	public void sendNotification(NotificationContext notificationContext)
-		throws PortalException {
+			throws PortalException {
 
 		siteDefaultLocale = LocaleUtil.getDefault();
 
 		notificationContext.setType(TYPE_KEY);
 
-		NotificationTemplate notificationTemplate =
-			notificationContext.getNotificationTemplate();
+		NotificationTemplate notificationTemplate = notificationContext.getNotificationTemplate();
 
 		Map<String, Object> termValues = notificationContext.getTermValues();
 
 		String body = formatLocalizedContent(
-			notificationTemplate.getBodyMap(), notificationContext);
+				notificationTemplate.getBodyMap(), notificationContext);
 
 		String subject = formatLocalizedContent(
-			notificationTemplate.getSubjectMap(), notificationContext);
+				notificationTemplate.getSubjectMap(), notificationContext);
 
-		Map<String, String> recipientSettingsMap =
-			evaluateNotificationRecipientSettings(
+		Map<String, String> recipientSettingsMap = evaluateNotificationRecipientSettings(
 				notificationContext.getCompanyId(), notificationContext,
 				termValues);
 
@@ -146,18 +143,18 @@ public class PrescriptionExpirationNotificationType
 
 		if (user == null) {
 			_log.warn(
-				"PrescriptionExpirationNotificationType: user not found for " +
-					"userId=" + notificationContext.getUserId() +
-					", skipping notification");
+					"PrescriptionExpirationNotificationType: user not found for " +
+							"userId=" + notificationContext.getUserId() +
+							", skipping notification");
 
 			return;
 		}
 
 		prepareNotificationContext(
-			user, body, notificationContext, recipientSettingsMap, subject);
+				user, body, notificationContext, recipientSettingsMap, subject);
 
 		Object[] recipients = toRecipients(
-			notificationContext.getNotificationRecipientSettings());
+				notificationContext.getNotificationRecipientSettings());
 
 		for (Object recipient : recipients) {
 			long recipientUserId = GetterUtil.getLong(recipient);
@@ -170,62 +167,59 @@ public class PrescriptionExpirationNotificationType
 				JSONObject payloadJSONObject = JSONFactoryUtil.createJSONObject();
 
 				payloadJSONObject.put(
-					"classPK", notificationContext.getClassPK());
+						"classPK", notificationContext.getClassPK());
 				payloadJSONObject.put("subject", subject);
 				payloadJSONObject.put("body", body);
 
 				_userNotificationEventLocalService.sendUserNotificationEvents(
-					recipientUserId, TYPE_KEY,
-					UserNotificationDeliveryConstants.TYPE_WEBSITE,
-					payloadJSONObject);
+						recipientUserId, TYPE_KEY,
+						UserNotificationDeliveryConstants.TYPE_WEBSITE,
+						payloadJSONObject);
 
 				if (_log.isInfoEnabled()) {
 					_log.info(
-						"PrescriptionExpirationNotificationType: user " +
-							"notification sent to userId=" + recipientUserId);
+							"PrescriptionExpirationNotificationType: user " +
+									"notification sent to userId=" + recipientUserId);
 				}
-			}
-			catch (Exception exception) {
+			} catch (Exception exception) {
 				_log.error(
-					"PrescriptionExpirationNotificationType: failed to send " +
-						"user notification to userId=" + recipientUserId,
-					exception);
+						"PrescriptionExpirationNotificationType: failed to send " +
+								"user notification to userId=" + recipientUserId,
+						exception);
 			}
 		}
 	}
 
-	// Redeclare @Reference for inherited protected fields from BaseNotificationType.
+	// Redeclare @Reference for inherited protected fields from
+	// BaseNotificationType.
 	// OSGi DS does not process @Reference annotations from superclasses in
-	// external bundles — they must be re-wired explicitly in the concrete component.
+	// external bundles — they must be re-wired explicitly in the concrete
+	// component.
 
 	@Reference
 	protected void setNotificationQueueEntryLocalService(
-		NotificationQueueEntryLocalService notificationQueueEntryLocalService) {
+			NotificationQueueEntryLocalService notificationQueueEntryLocalService) {
 
-		this.notificationQueueEntryLocalService =
-			notificationQueueEntryLocalService;
+		this.notificationQueueEntryLocalService = notificationQueueEntryLocalService;
 	}
 
 	@Reference
 	protected void setNotificationRecipientLocalService(
-		NotificationRecipientLocalService notificationRecipientLocalService) {
+			NotificationRecipientLocalService notificationRecipientLocalService) {
 
-		this.notificationRecipientLocalService =
-			notificationRecipientLocalService;
+		this.notificationRecipientLocalService = notificationRecipientLocalService;
 	}
 
 	@Reference
 	protected void setNotificationRecipientSettingLocalService(
-		NotificationRecipientSettingLocalService
-			notificationRecipientSettingLocalService) {
+			NotificationRecipientSettingLocalService notificationRecipientSettingLocalService) {
 
-		this.notificationRecipientSettingLocalService =
-			notificationRecipientSettingLocalService;
+		this.notificationRecipientSettingLocalService = notificationRecipientSettingLocalService;
 	}
 
 	@Reference
 	protected void setNotificationTermEvaluatorTracker(
-		NotificationTermEvaluatorTracker notificationTermEvaluatorTracker) {
+			NotificationTermEvaluatorTracker notificationTermEvaluatorTracker) {
 
 		this.notificationTermEvaluatorTracker = notificationTermEvaluatorTracker;
 	}
@@ -237,7 +231,7 @@ public class PrescriptionExpirationNotificationType
 
 	@Reference
 	protected void setUserGroupLocalService(
-		UserGroupLocalService userGroupLocalService) {
+			UserGroupLocalService userGroupLocalService) {
 
 		this.userGroupLocalService = userGroupLocalService;
 	}
@@ -248,13 +242,12 @@ public class PrescriptionExpirationNotificationType
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		PrescriptionExpirationNotificationType.class);
+			PrescriptionExpirationNotificationType.class);
 
 	@Reference
 	private RoleLocalService _roleLocalService;
 
 	@Reference
-	private UserNotificationEventLocalService
-		_userNotificationEventLocalService;
+	private UserNotificationEventLocalService _userNotificationEventLocalService;
 
 }
