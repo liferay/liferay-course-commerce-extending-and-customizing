@@ -25,8 +25,7 @@ MinimumQuantityDisplayContext minimumQuantityDisplayContext = (MinimumQuantityDi
 	<div class="col">
 		<commerce-ui:panel
 			bodyClasses="flex-fill"
-			title="Configuration"
-		>
+			title="Configuration">
 			<div class="row">
 				<div class="col">
 					<%-- TODO: Add Minimum Quantity field here --%>
