@@ -20,7 +20,7 @@ import org.osgi.service.component.annotations.Component;
  * @author Ricky Pan
  */
 
-/* TODO: Set key and order validator priority */
+/* TODO 1: Set key and order validator priority */
 
 @Component(
     property = {
@@ -33,7 +33,7 @@ public class ClarityWarrantyOrderValidator implements CommerceOrderValidator {
 
     @Override
     public String getKey() {
-        /* TODO: Implement method to return the order validator key. */
+        /* TODO 2: Implement method to return the order validator key. */
 
         return "";
     }
@@ -48,7 +48,7 @@ public class ClarityWarrantyOrderValidator implements CommerceOrderValidator {
             return new CommerceOrderValidatorResult(true);
         }
 
-        /* TODO 1: Use helper method to return validation result. */
+        /* TODO 4: Use helper method to return validation result. */
 
         // The cpInstance object contains a reference to the SKU needed by 
         // the helper method
@@ -61,7 +61,7 @@ public class ClarityWarrantyOrderValidator implements CommerceOrderValidator {
             Locale locale, CommerceOrderItem commerceOrderItem)
         throws PortalException {
 
-        /* TODO 2: Use helper method to return validation result. */
+        /* TODO 5: Use helper method to return validation result. */
 
         // The commerceOrderItem contains references to both the order as
         // well as the item SKU needed by the helper method
@@ -91,8 +91,6 @@ public class ClarityWarrantyOrderValidator implements CommerceOrderValidator {
                 ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
                     "content.Language", locale, getClass());
 
-                /* TODO: */
-
                 return new CommerceOrderValidatorResult(
                     false,
                     LanguageUtil.format(
@@ -105,7 +103,7 @@ public class ClarityWarrantyOrderValidator implements CommerceOrderValidator {
         return new CommerceOrderValidatorResult(true);
     }
 
-    /* TODO: Set the SKUs to point to the warranty products in your portal. */
+    /* TODO 3: Set the SKUs to point to the warranty products in your portal. */
 
     private static final String _WARRANTY_1YR_SKU = "";
 
