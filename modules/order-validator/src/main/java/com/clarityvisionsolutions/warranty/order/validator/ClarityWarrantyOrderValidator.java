@@ -1,4 +1,4 @@
-package com.clarity.warranty.order.validator;
+package com.clarityvisionsolutions.warranty.order.validator;
 
 import com.liferay.commerce.model.CommerceOrder;
 import com.liferay.commerce.model.CommerceOrderItem;
@@ -19,10 +19,13 @@ import org.osgi.service.component.annotations.Component;
 /**
  * @author Ricky Pan
  */
+
+/* TODO: Set key and order validator priority */
+
 @Component(
     property = {
-        "commerce.order.validator.key=clarity-warranty-validator",
-        "commerce.order.validator.priority:Integer=50"
+        "commerce.order.validator.key=",
+        "commerce.order.validator.priority:Integer="
     },
     service = CommerceOrderValidator.class
 )
@@ -30,9 +33,9 @@ public class ClarityWarrantyOrderValidator implements CommerceOrderValidator {
 
     @Override
     public String getKey() {
-        // TODO
+        /* TODO: Implement method to return the order validator key. */
 
-        return "INSERT_KEY";
+        return "";
     }
 
     @Override
@@ -45,7 +48,10 @@ public class ClarityWarrantyOrderValidator implements CommerceOrderValidator {
             return new CommerceOrderValidatorResult(true);
         }
 
-        // TODO
+        /* TODO 1: Use helper method to return validation result. */
+
+        // The cpInstance object contains a reference to the SKU needed by 
+        // the helper method
 
         return new CommerceOrderValidatorResult(true);
     }
@@ -55,7 +61,10 @@ public class ClarityWarrantyOrderValidator implements CommerceOrderValidator {
             Locale locale, CommerceOrderItem commerceOrderItem)
         throws PortalException {
 
-        // TODO
+        /* TODO 2: Use helper method to return validation result. */
+
+        // The commerceOrderItem contains references to both the order as
+        // well as the item SKU needed by the helper method
 
         return new CommerceOrderValidatorResult(true);
     }
@@ -82,14 +91,13 @@ public class ClarityWarrantyOrderValidator implements CommerceOrderValidator {
                 ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
                     "content.Language", locale, getClass());
 
-                // TODO
+                /* TODO: */
 
                 return new CommerceOrderValidatorResult(
                     false,
                     LanguageUtil.format(
                         resourceBundle,
-                        "warranty-restriction-you-cannot-combine-x-and-x-in-" +
-                            "the-same-order",
+                        "you-cannot-combine-x-and-x-in-the-same-order",
                         new String[] {_WARRANTY_LFT_SKU, _WARRANTY_1YR_SKU}));
             }
         }
@@ -97,10 +105,10 @@ public class ClarityWarrantyOrderValidator implements CommerceOrderValidator {
         return new CommerceOrderValidatorResult(true);
     }
 
-    // TODO
+    /* TODO: Set the SKUs to point to the warranty products in your portal. */
 
-    private static final String _WARRANTY_1YR_SKU = "INSERT-1YEAR-SKU";
+    private static final String _WARRANTY_1YR_SKU = "";
 
-    private static final String _WARRANTY_LFT_SKU = "INSERT-LIFETIME-SKU";
+    private static final String _WARRANTY_LFT_SKU = "";
 
 }
