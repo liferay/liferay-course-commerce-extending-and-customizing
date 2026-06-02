@@ -32,8 +32,8 @@ import org.osgi.service.component.annotations.Reference;
 )
 public class ServicePlanCPType implements CPType {
 
-	public static final String NAME = "service-plan";
-	private static final String LABEL_KEY = "service-plan";
+	public static final String NAME = "";
+	private static final String LABEL_KEY = "";
 
 	@Override
 	public void deleteCPDefinition(long cpDefinitionId) throws PortalException {
