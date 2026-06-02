@@ -41,6 +41,13 @@
         type="text"
         value="<%= fieldVariable %>"
     />
+
+    Validator patterns:
+     Self-closing (no value needed):
+       <aui:validator name="digits" />
+
+     With value (value goes inside the tag):
+       <aui:validator name="min">0</aui:validator>
 --%>
 
 <%@ include file="/init.jsp" %>
