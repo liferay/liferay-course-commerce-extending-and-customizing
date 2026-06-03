@@ -32,7 +32,7 @@ import org.osgi.service.component.annotations.Reference;
 )
 public class ServicePlanCPType implements CPType {
 
-	public static final String NAME = "service-plan";
+	public static final String NAME = "";
 
 	@Override
 	public void deleteCPDefinition(long cpDefinitionId) throws PortalException {
