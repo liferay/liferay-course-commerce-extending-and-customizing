@@ -32,8 +32,7 @@ import org.osgi.service.component.annotations.Reference;
 )
 public class ServicePlanCPType implements CPType {
 
-	public static final String NAME = "";
-	private static final String LABEL_KEY = "";
+	public static final String NAME = "service-plan";
 
 	@Override
 	public void deleteCPDefinition(long cpDefinitionId) throws PortalException {
@@ -50,7 +49,7 @@ public class ServicePlanCPType implements CPType {
 		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
 			"content.Language", locale, getClass());
 
-		return _language.get(resourceBundle, LABEL_KEY);
+		return _language.get(resourceBundle, NAME);
 	}
 
 	@Override
