@@ -60,7 +60,6 @@ public class PrescriptionExpirationNotificationTermEvaluator
 			// prescriptionNumber is a localized text field (String.localized);
 			// getData() must receive a Map default to match the column type.
 
-			@SuppressWarnings("unchecked")
 			Map<Locale, String> localizedData =
 				(Map<Locale, String>)_expandoValueLocalService.getData(
 					companyId, AccountEntry.class.getName(),

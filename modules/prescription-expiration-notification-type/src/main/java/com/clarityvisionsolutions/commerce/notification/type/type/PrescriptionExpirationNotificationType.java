@@ -108,11 +108,11 @@ public class PrescriptionExpirationNotificationType
 	public Object[] toRecipients(
 			List<NotificationRecipientSetting> notificationRecipientSettings) {
 
-		// TODO 2: Resolve the recipient's userId from the account ID.
+		// TODO 2: Resolve the recipient's userId from the companyId.
 		// Use _roleLocalService to get the role by name,
 		// then return the first user assigned to the role as a single-element Object
 		// array,
-		// or new Object[0] if the account has no users.
+		// or new Object[0] if no users are assigned to the role.
 
 		return new Object[0];
 	}
