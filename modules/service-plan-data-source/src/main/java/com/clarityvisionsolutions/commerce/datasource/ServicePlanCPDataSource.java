@@ -103,8 +103,6 @@ public class ServicePlanCPDataSource implements CPDataSource {
 			}
 
 			// TODO: Add filter condition here
-
-			filteredDefinitions.add(cpDefinition);
 		}
 
 		// Build CPCatalogEntries with pagination
