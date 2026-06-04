@@ -9,7 +9,7 @@
             ExpandoTableConstants.DEFAULT_TABLE_NAME,
             "servicePlan_fieldName",
             cpDefinition.getCPDefinitionId(),
-            (String)null));
+            _defaultValue));
 
     Select field:
     <aui:select label="field-key" name="fieldVariable" value="<%= fieldVariable %>">
@@ -136,7 +136,10 @@ String termsUrl = GetterUtil.getString(
                     name="maxNumberOfClaims"
                     type="text"
                     value="<%= maxNumberOfClaims %>"
-                />
+                >
+                    <aui:validator name="digits" />
+                    <aui:validator name="min">0</aui:validator>
+                </aui:input>
 
                 <%-- TODO: Add Max Claim Value field here --%>
 
