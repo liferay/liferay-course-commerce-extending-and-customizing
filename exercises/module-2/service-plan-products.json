@@ -1,5 +1,33 @@
 [
   {
+    "name": {"en_US": "Clarity Artisan Protection Plan \u2014 Basic"},
+    "externalReferenceCode": "SERVICE-PLAN-BASIC-1YR",
+    "catalogExternalReferenceCode": "CLARITY_EYEWEAR",
+    "productType": "service-plan",
+    "active": true,
+    "neverExpire": true,
+    "categories": [
+      {"externalReferenceCode": "149e2c02-d85a-99c4-959f-0678ed79f1b4", "id": 99735, "name": "Service Plan"}
+    ],
+    "customFields": [
+      {"customValue": {"data": "12 months"}, "name": "servicePlan_coverageDuration"},
+      {"customValue": {"data": "30 days"}, "name": "servicePlan_gracePeriod"},
+      {"customValue": {"data": "1"}, "name": "servicePlan_maxNumberOfClaims"},
+      {"customValue": {"data": "250.00"}, "name": "servicePlan_maxClaimValue"},
+      {"customValue": {"data": "Repair"}, "name": "servicePlan_replacementMethod"},
+      {"customValue": {"data": "ClearShield Insurance Ltd."}, "name": "servicePlan_underwriter"},
+      {"customValue": {"data": "https://www.clarityvisionsolutions.com/legal/basic-plan-terms"}, "name": "servicePlan_termsUrl"}
+    ],
+    "skus": [
+      {
+        "price": 29.99,
+        "published": true,
+        "purchasable": true,
+        "sku": "SERVICE-PLAN-BASIC-1YR"
+      }
+    ]
+  },
+  {
     "name": {"en_US": "Clarity Artisan Protection Plan \u2014 Standard"},
     "externalReferenceCode": "SERVICE-PLAN-STANDARD-2YR",
     "catalogExternalReferenceCode": "CLARITY_EYEWEAR",
@@ -17,6 +45,14 @@
       {"customValue": {"data": "Repair or Replace"}, "name": "servicePlan_replacementMethod"},
       {"customValue": {"data": "ClearShield Insurance Ltd."}, "name": "servicePlan_underwriter"},
       {"customValue": {"data": "https://www.clarityvisionsolutions.com/legal/standard-plan-terms"}, "name": "servicePlan_termsUrl"}
+    ],
+    "skus": [
+      {
+        "price": 59.99,
+        "published": true,
+        "purchasable": true,
+        "sku": "SERVICE-PLAN-STANDARD-2YR"
+      }
     ]
   },
   {
@@ -37,6 +73,14 @@
       {"customValue": {"data": "Replace"}, "name": "servicePlan_replacementMethod"},
       {"customValue": {"data": "PrimeGuard Insurance Co."}, "name": "servicePlan_underwriter"},
       {"customValue": {"data": "https://www.clarityvisionsolutions.com/legal/premium-plan-terms"}, "name": "servicePlan_termsUrl"}
+    ],
+    "skus": [
+      {
+        "price": 99.99,
+        "published": true,
+        "purchasable": true,
+        "sku": "SERVICE-PLAN-PREMIUM-2YR"
+      }
     ]
   }
 ]
