@@ -9,7 +9,7 @@
             ExpandoTableConstants.DEFAULT_TABLE_NAME,
             "servicePlan_fieldName",
             cpDefinition.getCPDefinitionId(),
-            (String)null));
+            _defaultValue));
 
     Select field:
     <aui:select label="field-key" name="fieldVariable" value="<%= fieldVariable %>">
@@ -41,6 +41,13 @@
         type="text"
         value="<%= fieldVariable %>"
     />
+
+    Validator patterns:
+     Self-closing (no value needed):
+       <aui:validator name="digits" />
+
+     With value (value goes inside the tag):
+       <aui:validator name="min">0</aui:validator>
 --%>
 
 <%@ include file="/init.jsp" %>
@@ -129,7 +136,10 @@ String termsUrl = GetterUtil.getString(
                     name="maxNumberOfClaims"
                     type="text"
                     value="<%= maxNumberOfClaims %>"
-                />
+                >
+                    <aui:validator name="digits" />
+                    <aui:validator name="min">0</aui:validator>
+                </aui:input>
 
                 <%-- TODO: Add Max Claim Value field here --%>
 

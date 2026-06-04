@@ -109,7 +109,7 @@ public class PrescriptionStatusModelListener
 				_log.info(
 					"PrescriptionStatusModelListener: prescriptionStatus " +
 						"transitioned to \"Expiring Soon\" for accountEntryId=" +
-						accountEntryId + " \u2014 dispatching notification");
+						accountEntryId + " - dispatching notification");
 			}
 
 			_sendNotification(accountEntry);
