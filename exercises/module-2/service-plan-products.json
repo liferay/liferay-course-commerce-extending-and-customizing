@@ -11,7 +11,7 @@
     ],
     "customFields": [
       {"customValue": {"data": "24 months"}, "name": "servicePlan_coverageDuration"},
-      {"customValue": {"data": "60 days"}, "name": "servicePlan_gracePeriod"},
+      {"customValue": {"data": "60"}, "name": "servicePlan_gracePeriod"},
       {"customValue": {"data": "5"}, "name": "servicePlan_maxNumberOfClaims"},
       {"customValue": {"data": "500.00"}, "name": "servicePlan_maxClaimValue"},
       {"customValue": {"data": "Repair or Replace"}, "name": "servicePlan_replacementMethod"},
@@ -39,7 +39,7 @@
     ],
     "customFields": [
       {"customValue": {"data": "24 months"}, "name": "servicePlan_coverageDuration"},
-      {"customValue": {"data": "90 days"}, "name": "servicePlan_gracePeriod"},
+      {"customValue": {"data": "90"}, "name": "servicePlan_gracePeriod"},
       {"customValue": {"data": "Unlimited"}, "name": "servicePlan_maxNumberOfClaims"},
       {"customValue": {"data": "1000.00"}, "name": "servicePlan_maxClaimValue"},
       {"customValue": {"data": "Replace"}, "name": "servicePlan_replacementMethod"},
