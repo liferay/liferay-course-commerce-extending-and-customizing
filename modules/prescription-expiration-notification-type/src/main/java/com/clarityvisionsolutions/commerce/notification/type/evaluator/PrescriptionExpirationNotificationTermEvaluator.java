@@ -121,8 +121,10 @@ public class PrescriptionExpirationNotificationTermEvaluator
 		}
 
 		if ("[%EXPIRATION_DATE%]".equals(termName)) {
-			// TODO 3: Read the "expirationDate" Expando value for the
-			// AccountEntry and return it as a String.
+			// TODO 3: Read the "expirationDate" Expando value for the AccountEntry
+			// and return it as a String.
+			// It is a localized text field — follow the same pattern as
+			// [%PRESCRIPTION_NUMBER%] above.
 			return "";
 		}
 
