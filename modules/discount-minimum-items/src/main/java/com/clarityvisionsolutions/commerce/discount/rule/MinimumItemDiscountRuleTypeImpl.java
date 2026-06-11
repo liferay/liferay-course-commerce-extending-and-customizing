@@ -46,7 +46,7 @@ public class MinimumItemDiscountRuleTypeImpl
 
 		<%-- TODO: Add business logic for Discount Rule here --%>
 		
-		if (result > 0) {
+		if (result >= 0) {
 			return true;
 		}
 
