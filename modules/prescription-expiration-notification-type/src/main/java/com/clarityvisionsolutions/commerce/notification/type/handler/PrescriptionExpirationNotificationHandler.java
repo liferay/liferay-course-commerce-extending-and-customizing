@@ -12,6 +12,7 @@ import org.osgi.service.component.annotations.Component;
 
 @Component(
 	immediate = true,
+	property = "jakarta.portlet.name=" + PrescriptionExpirationNotificationType.TYPE_KEY,
 	service = UserNotificationHandler.class
 )
 public class PrescriptionExpirationNotificationHandler
@@ -39,7 +40,7 @@ public class PrescriptionExpirationNotificationHandler
 			ServiceContext serviceContext)
 		throws Exception {
 
-		return "";
+		return serviceContext.getPortalURL();
 	}
 
 }
