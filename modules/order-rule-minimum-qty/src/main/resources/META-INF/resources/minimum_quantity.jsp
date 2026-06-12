@@ -28,7 +28,14 @@ MinimumQuantityDisplayContext minimumQuantityDisplayContext = (MinimumQuantityDi
 			title="Configuration">
 			<div class="row">
 				<div class="col">
-					<%-- TODO: Add Minimum Quantity field here --%>
+					<aui:input
+        				required="true"
+        				label="minimum-quantity"
+       					name="type--settings--minimum-quantity--"
+        				type="text"
+        				value="<%= minimumQuantityDisplayContext.getMinimumQuantity() %>">
+        				<aui:validator name="number" />
+    				</aui:input>
 				</div>
 			</div>
 		</commerce-ui:panel>

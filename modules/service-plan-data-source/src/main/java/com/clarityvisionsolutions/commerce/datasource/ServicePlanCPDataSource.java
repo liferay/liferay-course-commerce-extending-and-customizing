@@ -42,9 +42,9 @@ public class ServicePlanCPDataSource implements CPDataSource {
 	@Override
 	public String getLabel(Locale locale) {
 
-		// TODO: Return the data source label
-
-		return NAME;
+		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
+       		"content.Language", locale, getClass());
+   		return _language.get(resourceBundle, NAME);
 	}
 
 	@Override
@@ -102,7 +102,9 @@ public class ServicePlanCPDataSource implements CPDataSource {
 						" - " + e.getMessage());
 			}
 
-			// TODO: Add filter condition here
+			if (maxClaimValue >= 500) {
+       			filteredDefinitions.add(cpDefinition);
+   			}
 		}
 
 		// Build CPCatalogEntries with pagination

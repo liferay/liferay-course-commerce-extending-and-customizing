@@ -78,10 +78,7 @@ public class PrescriptionExpirationNotificationType
 
 	@Override
 	public String getType() {
-
-		// TODO 1: Return the TYPE_KEY constant.
-
-		return "";
+		return TYPE_KEY;
 	}
 
 	@Override
@@ -108,12 +105,25 @@ public class PrescriptionExpirationNotificationType
 	public Object[] toRecipients(
 			List<NotificationRecipientSetting> notificationRecipientSettings) {
 
-		// TODO 2: Resolve the recipient's userId from the companyId.
-		// Use _roleLocalService to get the role by name,
-		// then return the first user assigned to the role as a single-element Object
-		// array,
-		// or new Object[0] if no users are assigned to the role.
-
+		for (NotificationRecipientSetting setting : notificationRecipientSettings) {
+        	if ("companyId".equals(setting.getName())) {
+            	long companyId = GetterUtil.getLong(setting.getValue());
+ 
+            	Role role = _roleLocalService.fetchRole(companyId, "Operations Manager");
+ 
+           		if (role != null) {
+                	List<User> users = userLocalService.getRoleUsers(
+                   	role.getRoleId());
+ 
+                	if (!users.isEmpty()) {
+                    	return new Object[] {
+                        	users.get(0).getUserId()
+                    	};
+                	}
+            	}
+        	}
+		}
+    	
 		return new Object[0];
 	}
 

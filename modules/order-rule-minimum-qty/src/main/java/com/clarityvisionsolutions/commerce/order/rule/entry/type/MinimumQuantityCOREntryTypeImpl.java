@@ -23,8 +23,8 @@ import org.osgi.service.component.annotations.Component;
 
 @Component(
 	property = {
-		"commerce.order.rule.entry.type.key=",
-		"commerce.order.rule.entry.type.order:Integer="
+		"commerce.order.rule.entry.type.key=minimum-quantity-order-rule",
+		"commerce.order.rule.entry.type.order:Integer=1"
 	},
 	service = COREntryType.class
 )
@@ -34,7 +34,11 @@ public class MinimumQuantityCOREntryTypeImpl implements COREntryType {
 	public boolean evaluate(COREntry corEntry, CommerceOrder commerceOrder)
 		throws PortalException {
 
-		<%-- TODO: Add business logic for Order Rule here --%>
+		if (BigDecimalUtil.gt(
+       		BigDecimal.valueOf(_getMinimumQuantity(corEntry)),
+       			_getOrderQuantity(commerceOrder))) {
+     		return false;
+   		}
 
 		return true;
 	}
@@ -107,7 +111,11 @@ public class MinimumQuantityCOREntryTypeImpl implements COREntryType {
 		List<CommerceOrderItem> commerceOrderItems =
 			commerceOrder.getCommerceOrderItems();
 
-		<%-- TODO: Loop through Order and calculate Total Quantity --%>
+		for (CommerceOrderItem commerceOrderItem : commerceOrderItems) {
+       		orderQuantity = BigDecimal.valueOf(
+           		BigDecimalUtil.add(
+               		orderQuantity, commerceOrderItem.getQuantity()));
+   		}
 
 		return orderQuantity;
 	}
