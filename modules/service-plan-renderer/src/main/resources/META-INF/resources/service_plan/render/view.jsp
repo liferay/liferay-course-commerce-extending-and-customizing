@@ -4,12 +4,8 @@
     Expando read example:
     String fieldVariable = GetterUtil.getString(
         expandoValueLocalService.getData(
-            cpDefinition.getCompanyId(),
-            CPDefinition.class.getName(),
-            ExpandoTableConstants.DEFAULT_TABLE_NAME,
-            "servicePlan_fieldName",
-            cpDefinition.getCPDefinitionId(),
-            (String)null));
+            _companyId, _className, ExpandoTableConstants.DEFAULT_TABLE_NAME,
+            "servicePlan_fieldName", _classPK, _defaultValue));
 
     Field display example:
     <tr style="border-bottom: 1px solid #dee2e6;">
