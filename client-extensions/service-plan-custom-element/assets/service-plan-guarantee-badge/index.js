@@ -44,8 +44,13 @@ class ServicePlanGuaranteeBadge extends HTMLElement {
 
 			if (coverageDuration) {
 				// TODO: Add coverage duration mapping here
+				const durationLabels = {
+       				'12 months': '12-Month Protection Plan',
+       				'24 months': '24-Month Protection Plan',
+       				'Custom': 'Custom Protection Plan'
+   				};
 
-				badgeTitle = coverageDuration;
+				badgeTitle = durationLabels[coverageDuration] || coverageDuration;
 			}
 		}
 

@@ -71,7 +71,14 @@ String coverageDuration = GetterUtil.getString(
         cpDefinition.getCPDefinitionId(),
         _defaultValue));
 
-// TODO: Add gracePeriod Expando read here
+String gracePeriod = GetterUtil.getString(
+    expandoValueLocalService.getData(
+        themeDisplay.getCompanyId(),
+        CPDefinition.class.getName(),
+        ExpandoTableConstants.DEFAULT_TABLE_NAME,
+        "servicePlan_gracePeriod",
+        cpDefinition.getCPDefinitionId(),
+        _defaultValue));
 
 String maxNumberOfClaims = GetterUtil.getString(
     expandoValueLocalService.getData(
@@ -82,7 +89,14 @@ String maxNumberOfClaims = GetterUtil.getString(
         cpDefinition.getCPDefinitionId(),
         _defaultValue));
 
-// TODO: Add maxClaimValue Expando read here
+String maxClaimValue = GetterUtil.getString(
+    expandoValueLocalService.getData(
+        themeDisplay.getCompanyId(),
+        CPDefinition.class.getName(),
+        ExpandoTableConstants.DEFAULT_TABLE_NAME,
+        "servicePlan_maxClaimValue",
+        cpDefinition.getCPDefinitionId(),
+        _defaultValue));
 
 String replacementMethod = GetterUtil.getString(
     expandoValueLocalService.getData(
@@ -129,19 +143,31 @@ String termsUrl = GetterUtil.getString(
                     <aui:option label="Custom" value="Custom" />
                 </aui:select>
 
-                <%-- TODO: Add Grace Period field here --%>
-
+               <aui:input
+                    label="grace-period"
+                    name="gracePeriod"
+                    type="number"
+                    value="<%= gracePeriod %>">
+                    <aui:validator name="digits" />
+                    <aui:validator name="min">0</aui:validator>
+                </aui:input>
+                
                 <aui:input
                     label="max-number-of-claims"
                     name="maxNumberOfClaims"
                     type="text"
-                    value="<%= maxNumberOfClaims %>"
-                >
+                    value="<%= maxNumberOfClaims %>">
                     <aui:validator name="digits" />
                     <aui:validator name="min">0</aui:validator>
                 </aui:input>
 
-                <%-- TODO: Add Max Claim Value field here --%>
+                 <aui:input
+                    label="max-claim-value"
+                    name="maxClaimValue"
+                    step="0.01"
+                    type="number"
+                    value="<%= maxClaimValue %>"
+                />
 
                 <aui:select label="replacement-method" name="replacementMethod" value="<%= replacementMethod %>">
                     <aui:option label="Repair" value="Repair" />

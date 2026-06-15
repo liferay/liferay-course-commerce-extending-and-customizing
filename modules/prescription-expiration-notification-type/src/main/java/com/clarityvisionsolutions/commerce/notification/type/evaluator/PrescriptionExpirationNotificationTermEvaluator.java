@@ -121,10 +121,23 @@ public class PrescriptionExpirationNotificationTermEvaluator
 		}
 
 		if ("[%EXPIRATION_DATE%]".equals(termName)) {
-			// TODO 3: Read the "expirationDate" Expando value for the AccountEntry
-			// and return it as a String.
-			// It is a localized text field — follow the same pattern as
-			// [%PRESCRIPTION_NUMBER%] above.
+			Map<Locale, String> localizedData =
+				(Map<Locale, String>)_expandoValueLocalService.getData(
+					companyId, AccountEntry.class.getName(),
+					ExpandoTableConstants.DEFAULT_TABLE_NAME,
+					"expirationDate", accountEntryId,
+					Collections.<Locale, String>emptyMap());
+
+			if (localizedData != null && !localizedData.isEmpty()) {
+				String value = localizedData.get(LocaleUtil.getDefault());
+
+				if (value != null) {
+					return value;
+				}
+
+				return localizedData.values().iterator().next();
+			}
+
 			return "";
 		}
 

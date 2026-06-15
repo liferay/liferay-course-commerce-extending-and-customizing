@@ -1,0 +1,21 @@
+assemble:
+    -   from: assets
+        into: static
+    -   fromTask: bootJar
+clarity-b2b-po-checkout-step:
+    active: true
+    checkoutStepLabel: upload-po-number
+    checkoutStepName: clarity-b2b-po-number-checkout-step
+    checkoutStepOrder: 32
+    name: Clarity B2B PO Upload Checkout Step
+    oAuth2ApplicationExternalReferenceCode: clarity-b2b-po-step-oauth-application-user-agent
+    order: true
+    sennaDisabled: true
+    showControls: true
+    type: commerceCheckoutStep
+    visible: true
+clarity-b2b-po-step-oauth-application-user-agent:
+    .serviceAddress: localhost:58081
+    .serviceScheme: http
+    name: Clarity B2B PO Upload Checkout Step OAuth Application User Agent
+    type: oAuthApplicationUserAgent

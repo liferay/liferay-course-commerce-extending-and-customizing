@@ -20,12 +20,10 @@ import org.osgi.service.component.annotations.Component;
  * @author Ricky Pan
  */
 
-/* TODO 1: Set key and order validator priority */
-
 @Component(
     property = {
-        "commerce.order.validator.key=",
-        "commerce.order.validator.priority:Integer="
+        "commerce.order.validator.key=clarityvisionsolutions-warranty-validator",
+        "commerce.order.validator.priority:Integer=15"
     },
     service = CommerceOrderValidator.class
 )
@@ -33,9 +31,7 @@ public class ClarityWarrantyOrderValidator implements CommerceOrderValidator {
 
     @Override
     public String getKey() {
-        /* TODO 2: Implement method to return the order validator key. */
-
-        return "";
+        return "clarityvisionsolutions-warranty-validator";
     }
 
     @Override
@@ -48,12 +44,8 @@ public class ClarityWarrantyOrderValidator implements CommerceOrderValidator {
             return new CommerceOrderValidatorResult(true);
         }
 
-        /* TODO 4: Use helper method to return validation result. */
-
-        // The cpInstance object contains a reference to the SKU needed by 
-        // the helper method
-
-        return new CommerceOrderValidatorResult(true);
+        return _validateIncompatibility(
+            locale, commerceOrder, cpInstance.getSku());
     }
 
     @Override
@@ -61,12 +53,9 @@ public class ClarityWarrantyOrderValidator implements CommerceOrderValidator {
             Locale locale, CommerceOrderItem commerceOrderItem)
         throws PortalException {
 
-        /* TODO 5: Use helper method to return validation result. */
-
-        // The commerceOrderItem contains references to both the order as
-        // well as the item SKU needed by the helper method
-
-        return new CommerceOrderValidatorResult(true);
+        return _validateIncompatibility(
+            locale, commerceOrderItem.getCommerceOrder(),
+            commerceOrderItem.getSku());    
     }
 
     private CommerceOrderValidatorResult _validateIncompatibility(
@@ -105,8 +94,8 @@ public class ClarityWarrantyOrderValidator implements CommerceOrderValidator {
 
     /* TODO 3: Set the SKUs to point to the warranty products in your portal. */
 
-    private static final String _WARRANTY_1YR_SKU = "";
+    private static final String _WARRANTY_1YR_SKU = "WARRANTY-1YR";
 
-    private static final String _WARRANTY_LFT_SKU = "";
+    private static final String _WARRANTY_LFT_SKU = "WARRANTY-LFT";
 
 }

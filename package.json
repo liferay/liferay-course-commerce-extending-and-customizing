@@ -2,8 +2,8 @@
     "private": true,
     "workspaces": {
         "packages": [
-            "client-extensions/clarity-theme",
-            "client-extensions/checkout-step"
+            "client-extensions\\clarity-b2b-po-checkout-step",
+            "client-extensions\\clarity-theme"
         ]
     }
 }

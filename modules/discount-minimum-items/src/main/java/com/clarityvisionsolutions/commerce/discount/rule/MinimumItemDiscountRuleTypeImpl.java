@@ -19,8 +19,8 @@ import org.osgi.service.component.annotations.Component;
 
 @Component(
 	property = {
-		"commerce.discount.rule.type.key=",
-		"commerce.discount.rule.type.order:Integer="
+		"commerce.discount.rule.type.key=minimum-nbr-items",
+		"commerce.discount.rule.type.order:Integer=50"
 	},
 	service = CommerceDiscountRuleType.class
 )
@@ -44,7 +44,14 @@ public class MinimumItemDiscountRuleTypeImpl
 		
 		BigDecimal orderItemsQuantity = BigDecimal.ZERO;
 
-		<%-- TODO: Add business logic for Discount Rule here --%>
+		for (CommerceOrderItem item : commerceOrderItems) {
+			orderItemsQuantity = orderItemsQuantity.add(item.getQuantity());
+		}
+
+		int mininumNumberOfItems = GetterUtil.getInteger(
+			commerceDiscountRule.getSettingsProperty(commerceDiscountRule.getType()));
+		
+		int result = orderItemsQuantity.compareTo(BigDecimal.valueOf(mininumNumberOfItems));
 		
 		if (result >= 0) {
 			return true;
@@ -63,10 +70,8 @@ public class MinimumItemDiscountRuleTypeImpl
 		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
 			"content.Language", locale, getClass());
 
-		<%-- TODO: Add Resource Key for "has-a-minimum-number-of-items" here --%> 
-		/*return LanguageUtil.get(
-			resourceBundle, "resource-key");
-		*/
+		return LanguageUtil.get(
+			resourceBundle, "has-a-minimum-number-of-items");
 		
 	}
 
